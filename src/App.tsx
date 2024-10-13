@@ -1,13 +1,10 @@
 import * as React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import styled from 'styled-components';
 import Menu from './components/Menu';
-import Card from './components/Card';
 import Footer from './components/Footer';
 import CardList from './components/CardList';
 import { Status, Task } from './type';
-import { getTasks } from './apiMock';
 import { StyledFlexBox } from './components/styled';
 
 const StyledApp = styled.div`

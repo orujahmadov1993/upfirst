@@ -43,15 +43,16 @@ const StyledActionButton = styled.button<{ color?: string }>`
 
 interface ICard {
     task: Task;
+    onDelete: (uuid: string) => void;
 }
 
 const Card = (props: ICard) => {
     const [expanded, setExpanded] = useState(false);
-    const { task } = props;
+    const { task, onDelete } = props;
 
     const hiddentContent = (
         <StyledFlexBox gap="10px">
-            <StyledActionButton color="red">Delete</StyledActionButton>
+            <StyledActionButton color="red" onClick={() => onDelete(task.uuid)}>Delete</StyledActionButton>
             <StyledActionButton color="green">Mark as Done</StyledActionButton>
         </StyledFlexBox>
     );
@@ -67,6 +68,7 @@ const Card = (props: ICard) => {
                 Description: {task.description}
             </StyledDescription>
             <StyledDate>{moment(task.date).format("LLL")}</StyledDate>
+            <br />
             {expanded && hiddentContent}
             <br />
             <StyledExpandButton onClick={() => setExpanded(!expanded)}>{expanded ? 'Collapse' : 'Expand'}</StyledExpandButton>

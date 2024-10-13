@@ -2,7 +2,7 @@ import * as React from "react";
 import { Status, Task } from "../type";
 import Card from "./Card";
 import { StyledFlexBox } from "./styled";
-import { getTasks } from "../apiMock";
+import { useApi } from "../apiMock";
 
 interface ICardListProps {
     search: string;
@@ -13,6 +13,8 @@ const CardList = (props: ICardListProps) => {
     const [loading, setLoading] = React.useState(false);
     const [tasks, setTasks] = React.useState<Task[]>([]);
     const [error, setError] = React.useState('');
+
+    const { getTasks, removeTask } = useApi();
 
     const { search, status } = props;
 
@@ -26,6 +28,12 @@ const CardList = (props: ICardListProps) => {
             .catch(() => setError('Failed to load tasks'));
     }, [search, status]);
 
+    const handleDelete = (uuid: string) => {
+        removeTask(uuid).then(() => {
+            setTasks(tasks.filter(task => task.uuid !== uuid));
+        });
+    }
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -37,7 +45,7 @@ const CardList = (props: ICardListProps) => {
 
     return (
         <StyledFlexBox direction="column" gap="20px">
-            {tasks.map(task => <Card key={task.uuid} task={task} />)}
+            {tasks.map(task => <Card key={task.uuid} task={task} onDelete={handleDelete} />)}
         </StyledFlexBox>
     );
 }
