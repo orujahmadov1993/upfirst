@@ -31,6 +31,15 @@ const StyledExpandButton = styled.button`
     text-align: center;
 `;
 
+const StyledActionButton = styled.button<{ color?: string }>`
+    width: 150px;
+    background-color: ${props => props.color};
+    padding: 5px 25px;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+`;
+
 interface ICard {
     task: Task;
 }
@@ -39,7 +48,12 @@ const Card = (props: ICard) => {
     const [expanded, setExpanded] = useState(false);
     const { task } = props;
 
-    console.log('task date', task.date);
+    const hiddentContent = (
+        <StyledFlexBox gap="10px">
+            <StyledActionButton color="red">Delete</StyledActionButton>
+            <StyledActionButton color="green">Mark as Done</StyledActionButton>
+        </StyledFlexBox>
+    );
 
     return (
         <StyledCard>
@@ -52,7 +66,7 @@ const Card = (props: ICard) => {
                 Description: {task.description}
             </StyledDescription>
             <StyledDate>{moment(task.date).format("LLL")}</StyledDate>
-            {expanded && <div>EXPANDED CONTENT</div>}
+            {expanded && hiddentContent}
             <br />
             <StyledExpandButton onClick={() => setExpanded(!expanded)}>{expanded ? 'Collapse' : 'Expand'}</StyledExpandButton>
         </StyledCard>

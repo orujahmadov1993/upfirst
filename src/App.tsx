@@ -63,6 +63,7 @@ function App() {
     <StyledApp>
       <Menu />
       <StyledMainContent>
+        <h1>TASK LIST</h1>
         <CardList data={mockDataList} />
         <Footer />
       </StyledMainContent>
