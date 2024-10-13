@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Task } from "../type";
+import { Status, Task } from "../type";
 import { StyledFlexBox } from "./styled";
 import moment from "moment";
 import { useState } from "react";
@@ -53,7 +53,7 @@ const Card = (props: ICard) => {
     const hiddentContent = (
         <StyledFlexBox gap="10px">
             <StyledActionButton color="red" onClick={() => onDelete(task.uuid)}>Delete</StyledActionButton>
-            <StyledActionButton color="green">Mark as Done</StyledActionButton>
+            {task.status === Status.IN_PROGRESS && <StyledActionButton color="green">Mark as Done</StyledActionButton>}
         </StyledFlexBox>
     );
 

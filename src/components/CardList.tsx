@@ -1,8 +1,17 @@
 import * as React from "react";
-import { Status, Task } from "../type";
+import { Task } from "../type";
 import Card from "./Card";
-import { StyledFlexBox } from "./styled";
 import { useApi } from "../apiMock";
+import styled from "styled-components";
+
+const StyledCardList = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 50px;
+    height: 75vh;
+    overflow: auto;
+`;
 
 interface ICardListProps {
     search: string;
@@ -44,9 +53,9 @@ const CardList = (props: ICardListProps) => {
 
 
     return (
-        <StyledFlexBox direction="column" gap="20px">
+        <StyledCardList>
             {tasks.map(task => <Card key={task.uuid} task={task} onDelete={handleDelete} />)}
-        </StyledFlexBox>
+        </StyledCardList>
     );
 }
 

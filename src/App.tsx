@@ -2,10 +2,10 @@ import * as React from 'react';
 import './App.css';
 import styled from 'styled-components';
 import Menu from './components/Menu';
-import Footer from './components/Footer';
 import CardList from './components/CardList';
-import { Status, Task } from './type';
+import { Status } from './type';
 import { StyledFlexBox } from './components/styled';
+import Pagination from './components/Pagination';
 
 const StyledApp = styled.div`
   display: flex;
@@ -14,36 +14,48 @@ const StyledApp = styled.div`
 
 const StyledMainContent = styled.div`
   flex: 1;
-  padding: 30px 60px;
+`;
+
+const StyledHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+  margin-bottom: 30px;
+  padding: 0 50px;
 `;
 
 const StyledSearchInput = styled.input`
   padding: 5px 10px;
 `;
 
+const StyledSelect = styled.select`
+  padding: 5px;
+`;
+
 function App() {
   const [search, setSearch] = React.useState('');
   const [status, setStatus] = React.useState('');
+  const [page, setPage] = React.useState(1);
 
   return (
     <StyledApp>
       <Menu />
       <StyledMainContent>
-        <StyledFlexBox justify='space-between'>
+        <StyledHeader>
           <h1>TASK LIST</h1>
           <StyledFlexBox gap='10px'>
             <StyledSearchInput onChange={(e) => setSearch(e.target.value)} type='text' placeholder='Search a task...' />
-            <select onChange={(e) => setStatus(e.target.value)}>
+            <StyledSelect onChange={(e) => setStatus(e.target.value)}>
               <option value={''}>Select Status</option>
               <option value={Status.TODO}>TODO</option>
               <option value={Status.IN_PROGRESS}>IN PROGRESS</option>
-              <option value={Status.REMOVED}>REMOVED</option>
+              <option value={Status.BLOCKED}>BLOCKED</option>
               <option value={Status.DONE}>DONE</option>
-            </select>
+            </StyledSelect>
           </StyledFlexBox>
-        </StyledFlexBox>
+        </StyledHeader>
         <CardList search={search} status={status} />
-        <Footer />
+        <Pagination current={page} onChangePage={setPage} />
       </StyledMainContent>
     </StyledApp>
   );

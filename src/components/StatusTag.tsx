@@ -28,7 +28,7 @@ const StatusTag = (props: IStatusTagProps) => {
                 return { bg: 'gray', color: 'white' };
             }
 
-            case Status.REMOVED: {
+            case Status.BLOCKED: {
                 return { bg: 'red', color: 'white' };
             }
 

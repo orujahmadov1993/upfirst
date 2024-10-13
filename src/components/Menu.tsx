@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const StyledMenu = styled.div`
-    height: 100vh;
+    height: 90vh;
     background-color: grey;
     padding: 50px;
 `;
