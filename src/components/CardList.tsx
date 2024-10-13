@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Task } from "../type";
+import { Status, Task } from "../type";
 import Card from "./Card";
 import { StyledFlexBox } from "./styled";
 import { getTasks } from "../apiMock";
 
 interface ICardListProps {
     search: string;
+    status: string;
 }
 
 const CardList = (props: ICardListProps) => {
@@ -13,17 +14,17 @@ const CardList = (props: ICardListProps) => {
     const [tasks, setTasks] = React.useState<Task[]>([]);
     const [error, setError] = React.useState('');
 
-    const { search } = props;
+    const { search, status } = props;
 
     React.useEffect(() => {
         setLoading(true);
-        getTasks(search).
+        getTasks(search, status).
             then(data => {
                 setLoading(false);
                 setTasks(data);
             })
             .catch(() => setError('Failed to load tasks'));
-    }, [search]);
+    }, [search, status]);
 
     if (loading) {
         return <div>Loading...</div>;

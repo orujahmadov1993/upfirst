@@ -26,15 +26,26 @@ const StyledSearchInput = styled.input`
 
 function App() {
   const [search, setSearch] = React.useState('');
+  const [status, setStatus] = React.useState('');
+
   return (
     <StyledApp>
       <Menu />
       <StyledMainContent>
         <StyledFlexBox justify='space-between'>
           <h1>TASK LIST</h1>
-          <StyledSearchInput onChange={(e) => setSearch(e.target.value)} type='text' placeholder='Search a task...' />
+          <StyledFlexBox gap='10px'>
+            <StyledSearchInput onChange={(e) => setSearch(e.target.value)} type='text' placeholder='Search a task...' />
+            <select onChange={(e) => setStatus(e.target.value)}>
+              <option value={''}>Select Status</option>
+              <option value={Status.TODO}>TODO</option>
+              <option value={Status.IN_PROGRESS}>IN PROGRESS</option>
+              <option value={Status.REMOVED}>REMOVED</option>
+              <option value={Status.DONE}>DONE</option>
+            </select>
+          </StyledFlexBox>
         </StyledFlexBox>
-        <CardList search={search} />
+        <CardList search={search} status={status} />
         <Footer />
       </StyledMainContent>
     </StyledApp>
