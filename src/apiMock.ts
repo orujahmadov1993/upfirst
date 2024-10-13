@@ -1,7 +1,5 @@
 import { Task } from "./type";
 
-const date = new Date();
-
 const PAGE_SIZE = 20;
 
 const mockDataList = [{"uuid":"f4031834-6a2a-4465-b6af-e485f698b694","name":"Typescipt","description":"Nunc rhoncus dui vel sem.","date":"3/18/2024","creator":"Melly","status":"DONE"},
@@ -1005,11 +1003,11 @@ const mockDataList = [{"uuid":"f4031834-6a2a-4465-b6af-e485f698b694","name":"Typ
     {"uuid":"0037cde8-0394-4b1c-80e1-da0454d586b0","name":"Kubernetes","description":"Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.","date":"1/24/2024","creator":"Krystal","status":"DONE"},
     {"uuid":"8b521d02-441a-4274-94ff-f5112fc13cfe","name":"Express","description":"Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.","date":"4/9/2024","creator":"Lisha","status":"IN_PROGRESS"}];
 
-    export const getTasks = async (ordering?: string, page = 1): Promise<Task[]> => {
+    export const getTasks = async (search?: string, ordering?: string, page = 1): Promise<Task[]> => {
     return new Promise((res) => {
         setTimeout(() => {
             const response = mockDataList.slice((page-1) * PAGE_SIZE, PAGE_SIZE);
-            res(response as any)
-        }, 3000);
+            res(response.filter(task => task.name.toLowerCase().includes(search || '')) as Task[])
+        }, 1000);
     });
 }

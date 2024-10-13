@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import CardList from './components/CardList';
 import { Status, Task } from './type';
 import { getTasks } from './apiMock';
+import { StyledFlexBox } from './components/styled';
 
 const StyledApp = styled.div`
   display: flex;
@@ -19,13 +20,21 @@ const StyledMainContent = styled.div`
   padding: 30px 60px;
 `;
 
+const StyledSearchInput = styled.input`
+  padding: 5px 10px;
+`;
+
 function App() {
+  const [search, setSearch] = React.useState('');
   return (
     <StyledApp>
       <Menu />
       <StyledMainContent>
-        <h1>TASK LIST</h1>
-        <CardList />
+        <StyledFlexBox justify='space-between'>
+          <h1>TASK LIST</h1>
+          <StyledSearchInput onChange={(e) => setSearch(e.target.value)} type='text' placeholder='Search a task...' />
+        </StyledFlexBox>
+        <CardList search={search} />
         <Footer />
       </StyledMainContent>
     </StyledApp>
