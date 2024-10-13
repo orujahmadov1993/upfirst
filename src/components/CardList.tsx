@@ -1,16 +1,32 @@
+import * as React from "react";
 import { Task } from "../type";
 import Card from "./Card";
 import { StyledFlexBox } from "./styled";
+import { getTasks } from "../apiMock";
 
-interface ICardList {
-    data: Task[];
-}
+const CardList = () => {
+    const [loading, setLoading] = React.useState(false);
+    const [tasks, setTasks] = React.useState<Task[]>([]);
+    const [error, setError] = React.useState('');
 
-const CardList = (props: ICardList) => {
-    const { data } = props;
+    React.useEffect(() => {
+        setLoading(true);
+        getTasks().
+            then(data => {
+                setLoading(false);
+                setTasks(data);
+            })
+            .catch(() => setError('Failed to load tasks'));
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+
     return (
         <StyledFlexBox direction="column" gap="20px">
-            {data.map(task => <Card key={task.id} task={task} />)}
+            {tasks.map(task => <Card key={task.uuid} task={task} />)}
         </StyledFlexBox>
     );
 }
