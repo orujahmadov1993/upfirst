@@ -8,13 +8,17 @@ const StyledCardList = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 0 20px;
+    padding: 20px;
     height: 75vh;
     overflow: auto;
 
     @media only screen and (min-width: 600px) {
-        padding: 0 50px;
+        padding: 20px 50px;
     }
+`;
+
+const StyledNoResult = styled.div`
+    text-align: center;
 `;
 
 interface ICardListProps {
@@ -53,7 +57,7 @@ const CardList = (props: ICardListProps) => {
     }
 
     if (!loading && tasks.length === 0) {
-        return <div>No task found</div>;
+        return <StyledNoResult>No task found</StyledNoResult>;
     }
 
 

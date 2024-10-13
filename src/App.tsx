@@ -14,13 +14,15 @@ const StyledApp = styled.div`
 
 const StyledMainContent = styled.div`
   flex: 1;
+  position: relative;
 `;
 
 const StyledHeader = styled.div`
+  background-color: yellowgreen;
+  color: white;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid;
-  margin-bottom: 30px;
   padding: 0 50px;
 `;
 

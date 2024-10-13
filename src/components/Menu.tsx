@@ -2,9 +2,10 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const StyledMenu = styled.div`
-    height: 90vh;
-    background-color: grey;
-    padding: 50px;
+    height: 96vh;
+    background-color: turquoise;
+    color: white;
+    padding: 20px 40px;
 `;
 
 const Menu = () => {
@@ -25,10 +26,10 @@ const Menu = () => {
     return (
         <StyledMenu>
             <h1>Menu</h1>
-            <h3>M1</h3>
-            <h3>M2</h3>
-            <h3>M3</h3>
-            <h3>M4</h3>
+            <h3>Tasks</h3>
+            <h3>Dashboard</h3>
+            <h3>Metrics</h3>
+            <h3>Sprint</h3>
         </StyledMenu>
     );
 }

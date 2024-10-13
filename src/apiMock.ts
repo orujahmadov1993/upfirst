@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Task } from "./type";
+import { Status, Task } from "./type";
 
 const PAGE_SIZE = 20;
 
@@ -1010,11 +1010,9 @@ export const useApi = () => {
 
     const getTasks = async (search?: string, status?: string, ordering?: string, page = 1): Promise<Task[]> => {
         return new Promise((res) => {
-            console.log('PAGE', page, data.length);
             const response = data.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-            console.log('RESPONSE', response);
             res(response
-                .filter(task => task.name.toLowerCase().includes(search || ''))
+                .filter(task => task.name.toLowerCase().includes(search?.toLowerCase() || ''))
                 .filter(task => status ? task.status === status : true) as Task[]);
         });
     }
@@ -1027,5 +1025,19 @@ export const useApi = () => {
         });
     }
 
-    return { getTasks, removeTask };
+    const markAsDone = async (taskUuid: string): Promise<void> => {
+        return new Promise((res) => {
+            const filtered = data.map(task => {
+                if (task.uuid === taskUuid && task.status === Status.IN_PROGRESS) {
+                    task.status = Status.DONE;
+                }
+
+                return task;
+            });
+            setData(filtered);
+            res();
+        });
+    }
+
+    return { getTasks, removeTask, markAsDone };
 }
