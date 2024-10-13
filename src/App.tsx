@@ -57,6 +57,22 @@ function App() {
       description: 'Take online Kubernetes courses',
       date: date.toString(),
       creator: 'Oruj',
+    },
+    {
+      id: 5,
+      status: Status.DONE,
+      name: 'Learn Docker',
+      description: 'Take online Docker courses',
+      date: date.toString(),
+      creator: 'Oruj',
+    },
+    {
+      id: 6,
+      status: Status.REMOVED,
+      name: 'Learn NextJS',
+      description: 'Take online NextJS courses',
+      date: date.toString(),
+      creator: 'Oruj',
     }
   ]
   return (

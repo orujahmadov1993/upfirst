@@ -3,6 +3,7 @@ import { Task } from "../type";
 import { StyledFlexBox } from "./styled";
 import moment from "moment";
 import { useState } from "react";
+import StatusTag from "./StatusTag";
 
 const StyledCard = styled.div`
     width: 100%;
@@ -59,7 +60,7 @@ const Card = (props: ICard) => {
         <StyledCard>
             <StyledFlexBox justify="space-between">
                 <StyledLabel>{task.name}</StyledLabel>
-                <div>{task.status}</div>
+                <StatusTag status={task.status} />
             </StyledFlexBox>
             <br />
             <StyledDescription>
