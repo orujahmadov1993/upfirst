@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const StyledPagination = styled.div`
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 0px;
     background-color: aliceblue;
     width: max-content;
     margin: auto;

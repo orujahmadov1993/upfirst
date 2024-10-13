@@ -1010,7 +1010,9 @@ export const useApi = () => {
 
     const getTasks = async (search?: string, status?: string, ordering?: string, page = 1): Promise<Task[]> => {
         return new Promise((res) => {
-            const response = data.slice((page - 1) * PAGE_SIZE, PAGE_SIZE);
+            console.log('PAGE', page, data.length);
+            const response = data.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+            console.log('RESPONSE', response);
             res(response
                 .filter(task => task.name.toLowerCase().includes(search || ''))
                 .filter(task => status ? task.status === status : true) as Task[]);

@@ -54,7 +54,8 @@ function App() {
             </StyledSelect>
           </StyledFlexBox>
         </StyledHeader>
-        <CardList search={search} status={status} />
+        <CardList page={page} search={search} status={status} />
+        <hr />
         <Pagination current={page} onChangePage={setPage} />
       </StyledMainContent>
     </StyledApp>

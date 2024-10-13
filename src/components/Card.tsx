@@ -6,7 +6,6 @@ import { useState } from "react";
 import StatusTag from "./StatusTag";
 
 const StyledCard = styled.div`
-    width: 100%;
     position: relative;
     border: 1px solid;
     border-radius: 10px;
