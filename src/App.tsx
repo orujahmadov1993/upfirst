@@ -23,7 +23,7 @@ const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid;
-  padding: 0 50px;
+  padding: 0 70px;
 `;
 
 const StyledSearchInput = styled.input`
@@ -57,7 +57,6 @@ function App() {
           </StyledFlexBox>
         </StyledHeader>
         <CardList page={page} search={search} status={status} />
-        <hr />
         <Pagination current={page} onChangePage={setPage} />
       </StyledMainContent>
     </StyledApp>

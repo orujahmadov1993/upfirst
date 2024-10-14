@@ -9,7 +9,7 @@ const StyledCardList = styled.div`
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    height: 75vh;
+    height: 85vh;
     overflow: auto;
 
     @media only screen and (min-width: 600px) {

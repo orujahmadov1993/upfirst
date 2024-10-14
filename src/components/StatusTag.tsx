@@ -39,7 +39,7 @@ const StatusTag = (props: IStatusTagProps) => {
     }, [status]);
 
     return (
-        <StyledStatusTag background={bg} color={color} >{status}</StyledStatusTag>
+        <StyledStatusTag background={bg} color={color} >{status.split('_').join(' ')}</StyledStatusTag>
     )
 }
 

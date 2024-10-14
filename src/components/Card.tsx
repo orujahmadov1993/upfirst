@@ -38,6 +38,7 @@ const StyledActionButton = styled.button<{ color?: string }>`
     color: white;
     border-radius: 5px;
     border: 0;
+    cursor: pointer;
 `;
 
 interface ICard {
@@ -52,7 +53,7 @@ const Card = (props: ICard) => {
     const hiddentContent = (
         <StyledFlexBox gap="10px">
             <StyledActionButton color="red" onClick={() => onDelete(task.uuid)}>Delete</StyledActionButton>
-            {task.status === Status.IN_PROGRESS && <StyledActionButton color="green">Mark as Done</StyledActionButton>}
+            <StyledActionButton disabled={task.status !== Status.IN_PROGRESS} color="green">Mark as Done</StyledActionButton>
         </StyledFlexBox>
     );
 
